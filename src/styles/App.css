@@ -157,3 +157,8 @@ body.dark {
   cursor: pointer;
 }
 
+.task-item small {
+  display: block;
+  color: #777;
+  margin-top: 4px;
+}
