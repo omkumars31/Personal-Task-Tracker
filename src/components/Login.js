@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 
-const Login = ({}) =>{
-    const [username, setUsername] = useState('');
+const Login = ({ onLogin }) => {
+  const [username, setUsername] = useState('');
 
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        if(username.trim()){
-            localStorage.setItem('username',username);
-            onLogin(username);
-
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username.trim()) {
+      localStorage.setItem('username', username);
+      onLogin(username); // ✅ Call the passed prop function
     }
+  };
 
   return (
     <div className="login-container">
