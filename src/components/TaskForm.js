@@ -4,7 +4,8 @@ const TaskForm = ({ setTasks }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('low');
-  const [dueDate, setDueDate] = useState(''); // 📅 New state for due date
+  const [dueDate, setDueDate] = useState('');
+  const [category, setCategory] = useState('General'); // 🏷️ Category
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -15,7 +16,8 @@ const TaskForm = ({ setTasks }) => {
       title,
       description,
       priority,
-      dueDate, // 📅 Add due date to task
+      dueDate,
+      category, // 🏷️ Add category
       completed: false,
       createdAt: new Date().toISOString()
     };
@@ -26,7 +28,8 @@ const TaskForm = ({ setTasks }) => {
     setTitle('');
     setDescription('');
     setPriority('low');
-    setDueDate(''); // 📅 Reset due date
+    setDueDate('');
+    setCategory('General'); // 🧼 Reset category
   };
 
   return (
@@ -51,12 +54,18 @@ const TaskForm = ({ setTasks }) => {
         <option value="high">High Priority</option>
       </select>
 
-      {/* 📅 Due Date Picker */}
       <input
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
       />
+
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="General">General</option>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Urgent">Urgent</option>
+      </select>
 
       <button type="submit">Add Task</button>
     </form>

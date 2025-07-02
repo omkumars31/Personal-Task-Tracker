@@ -51,10 +51,14 @@ const TaskItem = ({ task, setTasks }) => {
               <span className={`priority-badge ${task.priority}`}>
                 {task.priority}
               </span>
+              {task.category && (
+                <span className={`category-badge ${task.category.toLowerCase()}`}>
+                  {task.category}
+                </span>
+              )}
             </h3>
             {task.description && <p>{task.description}</p>}
             <small>Created: {new Date(task.createdAt).toLocaleString()}</small>
-            {/* 📅 Show due date if available */}
             {task.dueDate && (
               <small>Due: {new Date(task.dueDate).toLocaleDateString()}</small>
             )}
