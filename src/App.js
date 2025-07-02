@@ -10,6 +10,9 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
 
   // Load tasks from localStorage when user logs in
   useEffect(() => {
@@ -26,12 +29,26 @@ const App = () => {
     }
   }, [tasks, username]);
 
+  // Set dark/light mode on body
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark' : '';
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
   if (!username) {
     return <Login onLogin={setUsername} />;
   }
 
   return (
     <div className="app-container">
+      {/* 🌙 Dark Mode Toggle */}
+      <button
+        onClick={() => setDarkMode(prev => !prev)}
+        className="theme-toggle"
+      >
+        Toggle {darkMode ? 'Light' : 'Dark'} Mode
+      </button>
+
       <h2>Hello, {username}</h2>
 
       {/* 🔍 Search Input */}
